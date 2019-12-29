@@ -1,0 +1,672 @@
+{% load static %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cllikeoudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+   function likeCount(obj)
+   {
+     var token = '{{csrf_token}}';
+     {#var btn_id = $("#button1").name#}
+     var btn_id =  obj.id;
+     var btn_name = obj.name;
+     alert("id from likecunt"+btn_id);
+        $.ajax({
+    type: 'GET',
+    url: '/like/',
+             headers: { "X-CSRFToken": token },
+            contentType: "application/json",
+    dataType: 'json',
+    data: {
+        'btn_id': btn_id,
+        'btn_name': btn_name},
+    success: function(data2) {
+
+        document.getElementById("likehit").innerHTML=data2.message+" "+"Likes";
+        alert("value from db"+data2.message);
+        },
+
+}
+
+);
+        alert("likecount called!!");
+         colorChange2();
+   }
+
+   function likeCountB3(obj)
+   {
+     var token = '{{csrf_token}}';
+     {#var btn_id = $("#button1").name#}
+     var btn_id =  obj.id;
+     var btn_name = obj.name;
+     alert("id from likecuntb3"+btn_id);
+        $.ajax({
+    type: 'GET',
+    url: '/like/',
+             headers: { "X-CSRFToken": token },
+            contentType: "application/json",
+    dataType: 'json',
+    data: {
+        'btn_id': btn_id,
+        'btn_name': btn_name},
+    success: function(data) {
+
+        document.getElementById("likehitB3").innerHTML=data.message+" "+"Likes";
+        alert(data.message);
+        },
+
+}
+
+);
+        alert("likecountB3 called!!");
+         colorChange3();
+   }
+
+    function saveLike(obj) {
+        var token = '{{csrf_token}}';
+        {#var btn_id = $(this).data("id");#}
+        {#   var a = $(".button").attr("id"); by using unique class name#}
+        {# var btn_val = $("#1").val(); to get the value of a button#}
+        var btn_id = obj.id;
+        var btn_name = obj.name;
+        {#event.srcElement.id#}
+        alert(btn_id);
+        alert(btn_name);
+        {#alert(btn_val);#}
+        $.ajax({
+            type: 'GET',
+            url: '/like/',
+            headers: {"X-CSRFToken": token},
+            contentType: "application/json",
+            data: {
+                'btn_id': btn_id,
+                'btn_name': btn_name
+            },
+            dataType: 'json',
+            success: function (data1) {
+                document.getElementById("likeshit").innerHTML = data1.message + " " + "Likes";
+                alert(data1.message);
+            },
+            error: function () {
+                alert("error in ajax!!");
+            },
+        });
+
+        alert("savlike called!!");
+        colorChange1();
+
+    }
+     </script>
+
+    <style>
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 30%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom
+    : 20px;
+  }
+}
+
+/* Style the counter cards */
+.card2 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 60px;
+  text-align: center;
+  background-color: #f1f1f1;
+  background-image: url("https://ci4.googleusercontent.com/proxy/v4uZTAMZLaOrxRx-Gbe_rOmwP5tcEGX2RMS80yQCJAVCr6FvpDgAk2EdNJiW5gg6VUJ2NkFjG0xOOdB1dLWL3vbC0ePQxB4FR4JNB8YMXN77LteI3eiYAie5HrBTNY1-UQh3DXJKlrR0yMiTc6Ata96LvLgRPpd6geCF9dG5vLwu37bwHI4DSsWnGvHeDir4UaYgZg5RjOil6g29y4EzE01B2O6LQWmRejXfsVpcEqb4sbtYrf-TmV3biGrr2bYNZGWRE1jM9EZx94Oah-JHsQ6pdaX3K1okmAteJLVEElxdQvqQbmjInDXPB49iBF1Rd9VAdHnCakMlMlOYQ4Eg6U8It5NtIfJOOdCg1KUH921OUJNiyynaSiUYPc9ydg=s0-d-e1-ft#https://instagram.fdel14-1.fna.fbcdn.net/vp/1006a1bc1d565a85b34fc9dd1988b7d1/5E5D8BCB/t51.2885-15/e35/s480x480/58873506_2483720408516187_997732301542300808_n.jpg?_nc_ht=instagram.fdel14-1.fna.fbcdn.net&_nc_cat=103&ig_cache_key=MjA0MDg1NjMwMjc1ODIyNzM0MA==.2-w480h385");
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+
+
+.icon-bar {
+  position: inherit;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+	/*=-footer-=*/
+			footer {
+				color: #fff;
+				background-attachment: fixed;
+				background-color:#222;
+        background-image: url(https://s7.postimg.org/uyf0oioaz/footer-bg.png);
+				background-size: cover;
+				background-position: bottom;
+			}
+			footer p {
+				color: #ccc;
+			}
+	   footer a {
+				color: #ccc;
+			}
+			.social-pet li {
+				display: inline-block;
+				margin-right: 10px;
+			}
+			.social-pet li a {
+				height: 35px;
+				width: 35px;
+				border-radius: 50%;
+				text-align: center;
+				display: block;
+				line-height: 35px;
+				background-color: #3a5a95;
+				color: #fff;
+			}
+			.social-pet li:nth-child(2) a {
+				background-color: #57aced;
+			}
+			.social-pet li:nth-child(3) a {
+				background-color: #dd4f43;
+			}
+			.social-pet li:nth-child(4) a {
+				background-color: #6b27b2;
+			}
+			.social-pet li a:hover {
+				background-color: #0141a2;
+			}
+			.social-pet li a:hover i {
+				transform: rotate(360deg);
+				-moz-transform: rotate(360deg);
+				-webkit-transform: rotate(360deg);
+			}
+			.recent-post li {
+				display: block;
+				color: #ccc;
+				margin-bottom: 25px;
+			}
+			.recent-post li label {
+				float: left;
+				border: 2px solid #ccc;
+				padding: 1px 7px;
+				text-align: center;
+			}
+			.recent-post li label span {
+				color: #fff;
+			}
+			footer .input-group-addon {
+				background-color: #0141a2;
+				padding: 10px;
+			}
+			.f-address li {
+				display: inline-block;
+			}
+			.f-address li i {
+				color: #2995de;
+				font-size: 18px;
+			}
+			.f-address li a {
+				color: #ccc;
+			}
+			/*=-Copyright-=*/
+			.copyright {
+				background-color: #111;
+				padding: 12px 0;
+        font-size:14px;
+			}
+
+.leftcolumn {
+  float: left;
+  width: 100%;
+}
+
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top:0px;
+  border: none;
+}
+.card1 {
+  background-color: white;
+  padding: 20px;
+  margin-top:0px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .topnav a {
+    float: none;
+    width: 100%;
+  }
+}
+    body {
+  font-family: "Lato", sans-serif;
+}
+.sidebar {
+  height: 100%;
+  width: 0%;
+  position: fixed;
+    align-items: stretch;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+
+}
+
+#main {
+  {#transition: margin-left .1s;#}
+  {#padding: 10px;#}
+    background-color: white;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+.footer{
+    background-color: black;
+}
+.headerh2{
+ text-align: center;
+ font-weight: bold;
+ color: #0141a2;
+    {#kartik#}
+}
+.imgButton{
+  text-align: left;
+  margin-left: 44px;
+  ;
+}
+  .button {
+background-color: #818181;
+color: black;
+font-size: 16px;
+padding: 5px 20px;
+border-radius: 5px;
+border: 0px;
+}
+.imgContainer{
+
+margin: 0 5px;
+max-width: 100%;
+box-sizing: border-box;
+height: auto;
+float-
+{#display: block;#}
+}
+</style>
+</head>
+<body>
+{#onload="document.getElementById('1').click();document.getElementById('2').click();"#}
+
+{#<div class="header">#}
+<div class="row">
+<div class="leftcolumn">
+<div style="background: white; margin: 0;" class="card1">
+    <img src="{% static 'mydemoapp/Images/Mydemo_homeimage.jpg'%}" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto; margin-top: 1px ">
+</div>
+    </div>
+    </div>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">About</a>
+  <a href="/Travel/">Travel</a>
+    <a href="#">Photography</a>
+  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Fashion</a>
+<ul class="collapse list-unstyled" id="pageSubmenu">
+    <li>
+        <a href="#">Western</a>
+    </li>
+    <li>
+        <a href="#">Festive</a>
+    </li>
+</ul>
+  <a href="/ContactU/">Contact Me</a>
+</div>
+<div class="row">
+<div class="leftcolumn">
+<div id="main">
+  <button class="openbtn" onclick="openNav()">☰ MyBlogMenu</button>
+</div>
+</div>
+</div>
+<script>
+
+    {#alert("sjhfjgsd");#}
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+    <h2 class="headerh2">--Visit to Char Dukan--</h2>
+        <div class="row">
+  <div class="column">
+    <img alt = "Home_image1" src="{% static 'mydemoapp/Images/Home_1.jpg'%}"  style="max-width: 100%">
+      <div class="imgButton" >
+{#                        {%csrf_token%}#}
+{#          <form ACTION="/like/" method="post">#}
+{#              {%csrf_token%}#}
+          <table>
+              <tr>
+                  <td><input type="button" id = "1" class = "button" name = "button1" value="like" onclick="saveLike(this);"/></td>
+{#                  <td><input type="button" id = "1" class = "button" name = "button1" value="like1" onclick="saveLike(this.id)"/></td>#}
+              </tr>
+              </table>
+{#              </form>#}
+
+                    <script>
+                        {#alert("{{message}}");#}
+                        alert("{{flag.1}}");
+
+                        if("{{flag.1}}"== "L"){
+                         colorChange1();
+                        };
+                        function  colorChange1() {
+                            alert("color change first button called");
+                            {#var bcknd_var = {'a'}#}
+        var button = document.getElementById('1').style.backgroundColor;
+        var color = ''
+        if (button !== 'blue' ) {
+            color = 'blue';
+        document.getElementById('1').style.backgroundColor = color;
+        }
+        else if (button == 'blue') {
+        color = 'grey';
+        document.getElementById('1').style.backgroundColor = color;
+        }}
+                        </script>
+            <div>
+                {% if message.1 %}
+                <p2> <span id="likeshit">{{message.1}} Likes</span></p2>
+                    {% elif not message.1%}
+                <p2> <span id="likeshit">{{"No"}} Likes</span></p2>
+                    {% endif %}
+{#                <p>{{ message.1 }} Likes</p>#}
+            </div>
+				</div>
+  </div>
+
+
+  <div class="column">
+    <img alt = "Home_image2" src="{% static 'mydemoapp/Images/Milie_homepage.jpg'%}"  style="width: 100%; height: 58%">
+      <div class="imgButton" >
+                        {%csrf_token%}
+			<input type="button" id = "2" name = "button2" class = "button" value="like" onclick="likeCount(this);"/>
+
+                    <script>
+                        {#alert("{{message}}");#}
+                        alert("{{flag.2}}");
+
+                        if("{{flag.2}}"== "L"){
+                         colorChange2();
+                        };
+                        function  colorChange2() {
+                           alert("color change second button called");
+                            {#var bcknd_var = {'a'}#}
+        var button = document.getElementById('2').style.backgroundColor;
+        var color = ''
+        if (button !== 'blue' ) {
+            color = 'blue';
+        document.getElementById('2').style.backgroundColor = color;
+        }
+        else if (button == 'blue') {
+        color = 'grey';
+        document.getElementById('2').style.backgroundColor = color;
+        }}
+                        </script>
+            <div>
+                 {% if message.2 %}
+                <p2> <span id="likehit">{{message.2}} Likes</span></p2>
+                    {% elif not message.2%}
+                <p2> <span id="likehit">{{"No"}} Likes</span></p2>
+                    {% endif %}
+            </div>
+				</div>
+  </div>
+
+  <div class="column">
+       <img alt = "Home_image3" src="https://ci3.googleusercontent.com/proxy/5s5_TeeA7_6szIlJeDTrHd2ijA3loTmQnfDAGLxHZ07lTYGRrtdxaTzKJdk4aho41DYjBuqoxwiScXhziv0o0LOPqxWvS1NluO7cVUTX7z_6nijPWRH4bjB_LClc-SegX8798qBf6qTUdjJ0y1GaISDCBF6LtmAT6tHk9Hag1qRtcfFPhGsnfc0r7ROZggxPsRrd_HzW28IGae9opp-I3BCghL4xMM66k0ojCvlYn2U7LQ9t_kE4sNQurJSNa_8kBX0baRJaLHVMS54tt67rg3_ZovzGR_JQh7SF7vTrtVu745bbudnDyY38ZysYKJdCTq3plSGsNoadbyOqGpB9MS7zNK7-roVR6gGBFseEMH72Zw=s0-d-e1-ft#https://instagram.fdel7-1.fna.fbcdn.net/v/t51.2885-15/e35/39990135_708325699508789_3829802134317039616_n.jpg?_nc_ht=instagram.fdel7-1.fna.fbcdn.net&se=7&oh=3cf4d997e748877ca6e50e4a8648d61f&oe=5DF4E8D7&ig_cache_key=MTg1Nzk0ODIyMjU4MjIwMzA0OQ==.2-w1080h810"  style="max-width: 100%">
+        <div class="imgButton" >
+                        {%csrf_token%}
+			<input type="button" id = "3" name = "button3" class = "button" value="like" onclick="likeCountB3(this);"/>
+
+                    <script>
+                        {#alert("{{message}}");#}
+                        alert("{{flag.3}}");
+
+                        if("{{flag.3}}"== "L"){
+                         colorChange3();
+                        };
+                        function  colorChange3() {
+                           alert("color change third button called");
+                            {#var bcknd_var = {'a'}#}
+        var button = document.getElementById('3').style.backgroundColor;
+        var color = ''
+        if (button !== 'blue' ) {
+            color = 'blue';
+        document.getElementById('3').style.backgroundColor = color;
+        }
+        else if (button == 'blue') {
+        color = 'grey';
+        document.getElementById('3').style.backgroundColor = color;
+        }}
+                        </script>
+            <div>
+                 {% if message.3 %}
+                <p2> <span id="likehitB3">{{message.3}} Likes</span></p2>
+                    {% elif not message.3%}
+                <p2> <span id="likehitB3">{{"No"}} Likes</span></p2>
+                    {% endif %}
+            </div>
+				</div>
+  </div>
+  </div>
+</div>
+
+
+    </div>
+
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+
+    </div>
+  </div>
+
+</div>
+
+
+<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+<!-- Footer -->
+		<footer class="pt-5 pb-4" id="contact" style="text-align: center">
+			<div class="container" style="text-align: center" >
+
+
+                        <h5 class="mb-4 font-weight-bold" style="text-align: center" >CONNECT WITH US :</h5>
+						<ul class="social-pet mt-4" style="text-align: center">
+                            <li><a href="https://www.instagram.com/milieshankhdhar/" title="instagram"><i class="fab fa-instagram" ></i></a></li>
+                            <li><a href="https://accounts.google.com/ServiceLogin/signinchooser?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" title="google-plus"><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href="https://www.facebook.com/milie.shankhdhar.9" title="facebook"><i class="fab fa-facebook-f"></i></a></li>
+						</ul>
+			</div>
+		<!-- Copyright -->
+		<section class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 ">
+						<div class="text-center text-white">
+							&copy; 2019 My Blog. All Rights Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+</div>
+
+</body>
+</html>
