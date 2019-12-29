@@ -1,0 +1,273 @@
+{% load static %}
+  <!DOCTYPE html>
+{% load staticfiles %}
+  <html>
+  <head>
+{#  <meta name="viewport" content="width=device-width, initial-scale=1">#}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Images uploaded by you</title>
+</head>
+<script>
+        function saveLike(obj) {
+        var token = '{{csrf_token}}';
+        {#var NUM = 0;#}
+        {#var btn_id = $(this).data("id");#}
+        {#   var a = $(".button").attr("id"); by using unique class name#}
+        {# var btn_val = obj.value;#}
+        {# #to get the value of a button##}
+        {#var id = $(this).attr("id");#}
+        var btn_id = obj.id;
+        var btn_name = obj.name;
+        {#event.srcElement.id#}
+        alert(btn_id);
+        alert(btn_name);
+        {#alert(btn_val);#}
+        $.ajax({
+            type: 'GET',
+            url: '/like/',
+            headers: {"X-CSRFToken": token},
+            contentType: "application/json",
+            data: {
+                'btn_id': btn_id,
+                'btn_name': btn_name
+            },
+            async: false,
+            dataType: 'json',
+            success: function (data1) {
+                {#document.getElementById("like").innerHTML =  data1.message + " " + "Likes";#}
+                alert(data1.message);
+                alert("#like"+btn_id);
+
+                 $("#like").attr('id','like'+btn_id);
+                $("#like"+btn_id).html("<b>"+data1.message+"</b>"+" <b>Likes</b>");
+                {#$('.button').click(function() {#}
+                {#    $(this).toggleClass('foo');#}
+                {#            });#}
+            },
+            error: function() {
+			console.log('fail');
+		}
+
+        });
+        alert("savelike called!!");
+        var button = document.getElementById(btn_id).style.backgroundColor;
+                var color = ''
+        if (button !== 'blue' ) {
+        $("#"+btn_id).css({backgroundColor: 'blue'});
+        }
+        else if (button == 'blue') {
+        $("#"+btn_id).css({backgroundColor: 'grey'});
+        }
+
+    }
+    </script>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+.foo {
+  background-color: yellow;
+  color: #000;
+}
+  /* Add a gray background color with some padding */
+  body {
+    font-family: inherit;
+    padding: 20px;
+    background: #f1f1f1;
+  }
+
+  /* Header/Blog Title */
+  .header {
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+    background: white;
+  }
+
+  /* Create two unequal columns that floats next to each other */
+  /* Left column */
+  .leftcolumn {
+    float: left;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+     text-align: center;
+  }
+
+  /* Right column */
+  .rightcolumn {
+    float: left;
+    width: 25%;
+    padding-left: 20px;
+  }
+
+  /* Fake image */
+  .fakeimg {
+    background-color: #aaa;
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  img{
+object-fit: contain;
+background-color: #818181;
+width: 500px;
+height:auto;
+}
+  /* Add a card effect for articles */
+  .card {
+     background-color: white;
+     width: fit-content;
+     padding-top: 0px;
+     padding-bottom: 20px;
+     padding-left: 0px;
+     padding-right: 0px;
+     margin-top: 20px;
+     display: inline-block;
+     text-align: left;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+  }
+
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+      width: 100%;
+      padding: 0;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
+      .button {
+background-color: grey;
+color: black;
+font-size: 16px;
+font-weight: bold;
+padding: 1px 1px;
+border-radius: 5px;
+cursor: pointer;
+}
+.profile_image{
+object-fit: fill;
+width: 100%;
+height: 100%;
+padding: 0px;
+margin: 0px;
+border: 0px;
+font: inherit;
+vertical-align: baseline;
+}
+.span_image{
+background-color: white;
+border-radius: 50%;
+height: 42px;
+width: 42px;
+display: block;
+box-sizing: border-box;
+overflow: hidden;
+position: relative;
+flex: 0 0 auto;
+-webkit-box-flex: 0;
+}
+{#.span_image::after {#}
+{#    border: 1px solid rgba(0,0,0,.0975);#}
+{#    border-radius: 50%;#}
+{#    bottom: 0;#}
+{#    content: '';#}
+{#    left: 0;#}
+{#    pointer-events: none;#}
+{#    position: absolute;#}
+{#    right: 0;#}
+{#    top: 0;#}
+{#}#}
+  </style>
+  </head>
+  <body>
+{% block content %}
+      {% for caption,btnid,imag,cnt,flag in qry_list %}
+          <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+          <header style="height: 60px; padding: 11px">
+
+{#              <canvas  style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>#}
+              <span class = "span_image">
+                  <img alt ="MilieEventImage" class = "profile_image" src="{{ media_url }}{{imag}}"></span>
+
+
+          </header>
+          <div>
+            <img alt ="MilieUploadedImage" src="{{ media_url }}{{imag}}" style="max-width: 100%;"/>
+              </div>
+        <div>
+          <div>
+            <input type="button" id = "{{btnid}}" class="button" name = "{{ flag }}" value="&#128525;Like" onclick="saveLike(this);"/>
+                </div>
+          <p2> <span id= "like"><b>{{cnt}} Likes</b></span></p2>
+          <br>
+          <div style="border-top: 1px solid lightblue">
+        <p2 style="text-align: justify;font-family: inherit">{{ caption }}</p2>
+          </div>
+        </div>
+      </div>
+        </div>
+          </div>
+      {% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if qry_list.has_previous %}
+             <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ qry_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ qry_list.number }} of {{ qry_list.paginator.num_pages }}.
+        </span>
+
+        {% if qry_list.has_next %}
+            <a href="?page={{ qry_list.next_page_number }}">next</a>
+            <a href="?page={{ qry_list.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<script>
+                alert("{{ flag }}");
+                if ("{{ flag }}" == "O"){
+                    colorChange();
+                };
+                       function  colorChange() {
+        var button = document.getElementById('{{ btnid }}').style.backgroundColor;
+        var color = ''
+        if (button !== 'blue' ) {
+            color = 'blue';
+        document.getElementById('{{ btnid }}').style.backgroundColor = color;
+        }
+        else if (button == 'blue') {
+        color = 'grey';
+        document.getElementById('{{ btnid }}').style.backgroundColor = color;
+        }}
+
+</script>
+
+{% endblock content %}
+
+  </body>
+  </html>
